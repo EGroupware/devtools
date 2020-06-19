@@ -1,0 +1,47 @@
+/**
+ * CSS for the widget browser
+ */
+
+#devtools-widgetBrowser {position: relative;}
+
+/* Basic layout */
+#devtools-widgetBrowser_widget_list {
+    overflow-y: scroll;
+    width: 22%;
+    height: 55%;
+}
+div#devtools-widgetBrowser_widget_attrs {
+    width: 22%;
+    overflow-y: auto;
+    height: 45%;
+}
+#devtools-widgetBrowser_widget_container {
+    position: absolute;
+    top: 0;
+    left: 23%;
+}
+
+#devtools-widgetBrowser_widget_list ul {
+	list-style-type: none;
+}
+#widget_attributes {
+
+	overflow-y: auto;
+
+}
+#widget_attributes table{
+	width: 100%;
+}
+
+/* Nicer looks */
+#devtools-widgetBrowser_widget_list li {
+	cursor:pointer;
+	padding: 0.4em;
+	font-size: 1.4em;
+	height: 16px;
+}
+button#devtools-widgetBrowser_dtd {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
