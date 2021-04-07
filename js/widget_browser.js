@@ -291,7 +291,13 @@ widget_browser.prototype._dtd_widgets = function (_type, _widget)
 		case 'menulist':
 			dtd = '<!ELEMENT menulist (menupopup)>\r\n';
 			break;
-
+		case 'select':
+			dtd += '<!ELEMENT select (option)>\r\n' +
+				'<!ELEMENT option EMPTY>\n' +
+				'<!ATTLIST option\n' +
+				'value CDATA #IMPLIED\n' +
+				'>';
+			break;
 		// Special handling for grid widget as it has a complicated structure
 		case 'grid':
 			dtd += '<!ELEMENT grid (columns,rows)>\r\n';
@@ -314,9 +320,19 @@ widget_browser.prototype._dtd_widgets = function (_type, _widget)
 
 		// Special handling for tabbox widget as it has a complicated structure
 		case 'tabbox':
-			dtd += '<!ELEMENT tabbox (tabs,tabpanels)>\r\n';
-			dtd += '<!ELEMENT tabs (tab)>\r\n';
-			dtd += '<!ELEMENT tabpanels (template)>\r\n';
+			dtd += '<!ELEMENT tabbox (tabs,tabpanels)>\r\n'+
+				'<!ATTLIST tabbox\n'+
+				'add_tabs (true|false) "false"\n'+
+				'tab_height CDATA #IMPLIED\n'+
+				'align_tabs (v|h) "h"\n'+
+				'>\r\n'+
+				'<!ELEMENT tabs (tab)>\r\n'+
+				'<!ELEMENT tab EMPTY*>\r\n'+
+				'<!ATTLIST tab\n'+
+				'id CDATA #IMPLIED\n'+
+				'label CDATA #IMPLIED\n'+
+				'>'+
+				'<!ELEMENT tabpanels (template|%Widgets;)*>\r\n';
 			break;
 
 		// Widget which can be a parent
